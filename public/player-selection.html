@@ -3,21 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Player Type</title>
+    <title>Player Type Selection</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="player-selection">
-        <h1>Select Player Type</h1>
-        <div class="button" data-type="contact">Contact</div>
-        <div class="button" data-type="power">Power</div>
-        <div class="button" data-type="best-hitter">Best Hitter</div>
-        <div class="button" data-type="speedster">Speedster</div>
-        <div class="button" data-type="shutdown-starter">Shutdown Starter</div>
-        <div class="button" data-type="strikeout-starter">Strikeout Starter</div>
-        <div class="button" data-type="shutdown-reliever">Shutdown Reliever</div>
-        <div class="button" data-type="closer">Closer</div>
+    <div class="header">
+        <h1 id="team-name"></h1>
     </div>
-    <script src="player-selection.js"></script>
+    <div class="team-image-container">
+        <img id="team-logo" src="" alt="Team Logo">
+    </div>
+    <div class="player-type-container">
+        <h2>What type of player are you looking to trade for?</h2>
+        <div class="player-type-buttons">
+            <button class="player-type-btn">Contact</button>
+            <button class="player-type-btn">Power</button>
+            <button class="player-type-btn">Best Hitter</button>
+            <button class="player-type-btn">Speedster</button>
+            <button class="player-type-btn">Shutdown starter</button>
+            <button class="player-type-btn">Strikeout starter</button>
+            <button class="player-type-btn">Shutdown reliever</button>
+            <button class="player-type-btn">Closer</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve team abbreviation from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const teamAbbreviation = urlParams.get('team');
+
+            // Retrieve all teams data from localStorage
+            const teamsData = JSON.parse(localStorage.getItem('teamsData'));
+
+            // Find the selected team data
+            const selectedTeam = teamsData.find(team => team.abbreviation === teamAbbreviation);
+            if (selectedTeam) {
+                document.getElementById('team-name').textContent = selectedTeam.name;
+                document.getElementById('team-logo').src = selectedTeam.image;
+                document.getElementById('team-logo').alt = selectedTeam.name;
+            }
+        });
+    </script>
 </body>
 </html>

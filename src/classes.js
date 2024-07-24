@@ -1,15 +1,19 @@
 // src/classes.js
-class Team {
-    constructor(abbreviation, name, image, wins, losses, W_L_percent) {
-      this.abbreviation = abbreviation;
-      this.name = name;
-      this.image = image;
-      this.wins = wins;
-      this.losses = losses;
-      this.W_L_percent = W_L_percent;
-    }
+(function(global) {
+  class Team {
+      constructor(abbreviation, name, wins, losses, W_L_percent, image) {
+          this.abbreviation = abbreviation;
+          this.name = name;
+          this.wins = wins;
+          this.losses = losses;
+          this.W_L_percent = W_L_percent;
+          this.image = image;
+      }
   }
-  
+  global.Team = Team;
+})(window);
+
+(function(global) {
   class Hitter {
     constructor(name, image, age, teamAbbreviation, BA, OBP, SLG, OPS, ISO, rOBA, SB, CS, RS_percent, SB_percent) {
       this.name = name;
@@ -28,7 +32,10 @@ class Team {
       this.SBPercentage = SB_percent;
     }
   }
-  
+  global.Hitter = Hitter;
+})(window);
+
+(function(global) {
   class Starter {
     constructor(name, image, age, teamAbbreviation, FIP, HR9, BB9, SO9, QS_percent) {
       this.name = name;
@@ -42,7 +49,10 @@ class Team {
       this.QS = QS_percent;
     }
   }
-  
+  global.Starter = Starter;
+})(window);
+
+(function(global) {
   class Reliever {
     constructor(name, image, age, teamAbbreviation, FIP, IS_percent, SO9, SV) {
       this.name = name;
@@ -55,7 +65,10 @@ class Team {
       this.SV = SV;
     }
   }
-  
+  global.Reliever = Reliever;
+})(window);
+
+(function(global) {
   class Closer {
     constructor(name, image, age, teamAbbreviation, SV, HR9, BSV, SV_percent) {
       this.name = name;
@@ -68,6 +81,7 @@ class Team {
       this.SVPercentage = SV_percent;
     }
   }
-  
-  module.exports = { Team, Hitter, Starter, Reliever, Closer };
+  global.Closer = Closer;
+})(window);
+
   
