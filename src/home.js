@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         teams.forEach(team => {
           const teamElement = document.createElement('div');
           teamElement.classList.add('team');
-  
+          
           const img = document.createElement('img');
           img.src = `/logos/${team.Abbreviation}.png`; // Ensure the image file is named as the abbreviation
           img.alt = team.Tm;

@@ -16,7 +16,12 @@ app.get('/', (req, res) => {
 
 // API route to get team data
 app.get('/teams', (req, res) => {
-  const query = 'SELECT Tm, Abbreviation, W, L FROM TeamPitching ORDER BY Abbreviation ASC'; // Updated table and sorted by Abbreviation
+  const query = `
+  SELECT Tm, Abbreviation, W, L
+  FROM TeamPitching
+  WHERE Tm != 'X League Average'
+  ORDER BY Abbreviation ASC;
+`;
   db.query(query, (err, results) => {
     if (err) {
       console.error('Error querying database:', err);
