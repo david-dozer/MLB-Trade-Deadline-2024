@@ -1,38 +1,89 @@
-/* styles.css */
+/* public/styles.css */
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .header {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-  }
-  
-  .team-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns */
-    gap: 10px;
-    padding: 20px;
-    justify-items: center;
-  }
-  
-  .team {
-    cursor: pointer;
-  }
-  
-  .team-logo {
-    width: 100px; /* Adjust size as needed */
-    height: auto;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: white;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Distribute space between items */
+  align-items: center;           /* Align items vertically center */
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  position: fixed; /* Fixes the header to the top of the viewport */
+  top: 0;          /* Positions the header at the top */
+  left: 0;         /* Ensures the header starts at the left edge */
+}
+
+.header h1 {
+  flex: 1; /* Allows the h1 to take up remaining space */
+  text-align: center; /* Center align text within the available space */
+}
+
+#back-btn {
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  margin-right: auto; /* Ensure the back button is aligned to the left */
+}
+
+.team-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  height: 420px;
+  gap: 40px;
+
+}
+
+.team-logo {
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
+}
+
+.team {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.team-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.team-image-container img {
+  width: 150px;
+  height: 150px;
+}
+
+.player-type-container {
+  text-align: center;
+}
+
+.player-type-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.player-type-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#back-btn {
+  font-size: 3.6rem;
+  color: whitesmoke;
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+}
