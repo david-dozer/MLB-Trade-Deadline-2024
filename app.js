@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 // API route to get team data
 app.get('/teams', (req, res) => {
   const query = `
-  SELECT Tm, Abbreviation, W, L
+  SELECT Tm, Abbreviation, W, L, W_L_percent
   FROM TeamPitching
   WHERE Tm != 'X League Average'
   ORDER BY Abbreviation ASC;

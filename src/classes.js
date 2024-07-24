@@ -1,10 +1,12 @@
 // src/classes.js
 class Team {
-    constructor(abbreviation, name, image, winLossPercentage) {
+    constructor(abbreviation, name, image, wins, losses, W_L_percent) {
       this.abbreviation = abbreviation;
       this.name = name;
       this.image = image;
-      this.winLossPercentage = winLossPercentage;
+      this.wins = wins;
+      this.losses = losses;
+      this.W_L_percent = W_L_percent;
     }
   }
   
