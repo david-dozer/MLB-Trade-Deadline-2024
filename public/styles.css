@@ -13,24 +13,22 @@ body {
 .header {
   width: 100%;
   display: flex;
-  justify-content: space-between; /* Distribute space between items */
   align-items: center;           /* Align items vertically center */
   padding: 20px;
   background-color: #333;
   color: white;
-  position: fixed; /* Fixes the header to the top of the viewport */
-  top: 0;          /* Positions the header at the top */
-  left: 0;         /* Ensures the header starts at the left edge */
+  position: fixed;               /* Fixes the header to the top of the viewport */
+  top: 0;                        /* Positions the header at the top */
+  left: 0;                       /* Ensures the header starts at the left edge */
+  height: 80px;                  /* Set a fixed height for the header */
 }
 
 .header h1 {
-  flex: 1; /* Allows the h1 to take up remaining space */
-  text-align: center; /* Center align text within the available space */
-}
-
-#back-btn {
-  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
-  margin-right: auto; /* Ensure the back button is aligned to the left */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;            /* Center align text within the available space */
+  font-size: 3.0rem;
 }
 
 .team-container {
@@ -83,7 +81,9 @@ body {
 }
 
 #back-btn {
-  font-size: 3.6rem;
+  font-size: 2.6rem;
   color: whitesmoke;
+  align-items: left;
   cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  margin-left: 40px;
 }
