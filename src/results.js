@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayPlayer(player) {
-        const playerContainer = document.getElementById('player-container');
+        // const playerContainer = document.getElementById('player-container');
         const statsContainer = document.getElementById('stats-container');
         const playerName = document.getElementById('player-name');
         const baseballRefLink = document.getElementById('baseball-ref-link');
@@ -31,6 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const { lastName } = splitName(player.Name);
 
         playerName.textContent = player.Name;
+        console.log('Player Username:', player.Username);
+        console.log('Last Name:', lastName);
+        console.log('Player data:', player);
+            console.log('BA:', player.BA);
+            console.log('OBP:', player.OBP);
+        console.log('SLG:', player.SLG);
+
+
         baseballRefLink.href = `https://www.baseball-reference.com/players/${lastName[0].toLowerCase()}/${player.Username}.shtml`;
 
         statsContainer.innerHTML = '';
@@ -38,39 +46,50 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (playerType) {
             case 'Contact':
             case 'Power':
+                console.log('Player data:', player);
+                console.log('BA:', player.Stat1);
+                console.log('OBP:', player.Stat2);
+                console.log('SLG:', player.Stat3);
+
+                statsContainer.innerHTML = `
+                    <p>BA: ${player.Stat1}</p>
+                    <p>OBP: ${player.Stat2}</p>
+                    <p>SLG: ${player.Stat3}</p>
+                `;
+                break;
             case 'Best Hitter':
                 statsContainer.innerHTML = `
-                    <p>BA: ${player.BA}</p>
-                    <p>OBP: ${player.OBP}</p>
-                    <p>SLG: ${player.SLG}</p>
+                    <p>BA: ${player.Stat2}</p>
+                    <p>OBP: ${player.Stat3}</p>
+                    <p>SLG: ${player.Stat4}</p>
                 `;
                 break;
             case 'Speedster':
                 statsContainer.innerHTML = `
-                    <p>SB: ${player.SB}</p>
-                    <p>CS: ${player.CS}</p>
-                    <p>RS%: ${player.RS}</p>
+                    <p>SB: ${player.Stat2}</p>
+                    <p>CS: ${player.Stat3}</p>
+                    <p>RS%: ${player.Stat4}</p>
                 `;
                 break;
             case 'Shutdown Starter':
             case 'Strikeout Starter':
                 statsContainer.innerHTML = `
-                    <p>FIP: ${player.FIP}</p>
-                    <p>SO9: ${player.SO9}</p>
+                    <p>S09: ${player.Stat2}</p>
+                    <p>FIP: ${player.Stat3}</p>
                 `;
                 break;
             case 'Best Reliever':
                 statsContainer.innerHTML = `
-                    <p>SO9: ${player.SO9}</p>
-                    <p>FIP: ${player.FIP}</p>
-                    <p>IS%: ${player.IS}</p>
+                    <p>S09: ${player.Stat2}</p>
+                    <p>FIP: ${player.Stat3}</p>
+                    <p>IS%: ${player.Stat4 * 100}%</p>
                 `;
                 break;
             case 'Best Closer':
                 statsContainer.innerHTML = `
-                    <p>SV: ${player.SV}</p>
-                    <p>BSV%: ${player.BSV}</p>
-                    <p>SV%: ${player.SV_PCT}</p>
+                    <p>SV: ${player.Stat2}</p>
+                    <p>BSV%: ${player.Stat3* 10}%</p>
+                    <p>SV%: ${player.Stat4* 100}%</p>
                 `;
                 break;
         }
