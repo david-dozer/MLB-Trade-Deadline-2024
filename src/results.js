@@ -34,9 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Player Username:', player.Username);
         console.log('Last Name:', lastName);
         console.log('Player data:', player);
-            console.log('BA:', player.BA);
-            console.log('OBP:', player.OBP);
-        console.log('SLG:', player.SLG);
 
 
         baseballRefLink.href = `https://www.baseball-reference.com/players/${lastName[0].toLowerCase()}/${player.Username}.shtml`;
@@ -80,9 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'Best Reliever':
                 statsContainer.innerHTML = `
-                    <p>S09: ${player.Stat2}</p>
-                    <p>FIP: ${player.Stat3}</p>
-                    <p>IS%: ${player.Stat4 * 100}%</p>
+                    <p>SV: ${player.Stat2}</p>
+                    <p>BSV%: ${player.Stat3* 10}%</p>
+                    <p>SV%: ${player.Stat4* 100}%</p>
                 `;
                 break;
             case 'Best Closer':
@@ -143,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     playersToShow.shift();
                 } else {
                     document.getElementById('player-container').innerHTML = `
-                        <p>No more players available. Go back to the <a href="/player-selection.html">player selection</a> screen.</p>
+                        <p>No more players available. Go back to the <a href="/player-selection.html?team=${encodeURIComponent(teamAbbreviation)}">player selection</a> screen.</p>
                     `;
                 }
 

@@ -95,8 +95,8 @@ app.get('/players', (req, res) => {
           break;
       case 'Best Reliever':
           query = `
-              SELECT Name, Username, SO9 + FIP - is_percent as Stat1, SO9 as Stat2, FIP as Stat3, is_percent as Stat4
-              FROM relievers
+              SELECT Name, Username, SV + BSv + sv_percent - bsv_percent - HR9 as Stat1, SV as Stat2, sv_percent as Stat3
+              FROM closers
               WHERE team != '${team}'
               ORDER BY Stat1 DESC
               LIMIT 21;
@@ -112,8 +112,7 @@ app.get('/players', (req, res) => {
           `;
           break;
       default:
-          res.status(400).send('Invalid player type');
-          return;
+        return res.status(400).json({ error: 'Invalid player type' });
   }
 
   // Execute query with the abbreviation directly inserted
