@@ -15,9 +15,9 @@
 
 (function(global) {
   class Hitter {
-    constructor(name, image, age, teamAbbreviation, BA, OBP, SLG, OPS, ISO, rOBA, SB, CS, RS_percent, SB_percent) {
+    constructor(name, Username, age, teamAbbreviation, BA, OBP, SLG, OPS, ISO, rOBA, SB, CS, RS_percent, SB_percent) {
       this.name = name;
-      this.image = image;
+      this.Username = Username;
       this.age = age;
       this.teamAbbreviation = teamAbbreviation;
       this.BA = BA;
@@ -37,9 +37,9 @@
 
 (function(global) {
   class Starter {
-    constructor(name, image, age, teamAbbreviation, FIP, HR9, BB9, SO9, QS_percent) {
+    constructor(name, Username, age, teamAbbreviation, FIP, HR9, BB9, SO9, QS_percent) {
       this.name = name;
-      this.image = image;
+      this.Username = Username;
       this.age = age;
       this.teamAbbreviation = teamAbbreviation;
       this.FIP = FIP;
@@ -54,9 +54,9 @@
 
 (function(global) {
   class Reliever {
-    constructor(name, image, age, teamAbbreviation, FIP, IS_percent, SO9, SV) {
+    constructor(name, Username, age, teamAbbreviation, FIP, IS_percent, SO9, SV) {
       this.name = name;
-      this.image = image;
+      this.Username = Username;
       this.age = age;
       this.teamAbbreviation = teamAbbreviation;
       this.FIP = FIP;
@@ -70,9 +70,9 @@
 
 (function(global) {
   class Closer {
-    constructor(name, image, age, teamAbbreviation, SV, HR9, BSV, SV_percent) {
+    constructor(name, Username, age, teamAbbreviation, SV, HR9, BSV, SV_percent) {
       this.name = name;
-      this.image = image;
+      this.Username = Username;
       this.age = age;
       this.teamAbbreviation = teamAbbreviation;
       this.SV = SV;

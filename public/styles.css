@@ -80,10 +80,80 @@ body {
   cursor: pointer;
 }
 
-#back-btn {
+#home-btn {
   font-size: 2.6rem;
   color: whitesmoke;
   align-items: left;
   cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
   margin-left: 40px;
 }
+
+/* Specific styles for results screen */
+#results-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f4; /* Light grey background for contrast */
+}
+
+/* Container for player results */
+#player-container {
+  text-align: center;
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white; /* White background for the player card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styling for the player name */
+#player-name {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Link to Baseball Reference profile */
+#baseball-ref-link {
+  display: inline-block;
+  margin: 10px 0;
+  color: #007bff; /* Blue color for links */
+  text-decoration: none;
+}
+
+#baseball-ref-link:hover {
+  text-decoration: underline;
+}
+
+/* Container for player stats */
+#stats-container {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Buttons for navigation */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; /* Blue background for buttons */
+  color: white;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue for hover effect */
+}
+
+/* Container for buttons to select player type or move to next player */
+#buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+

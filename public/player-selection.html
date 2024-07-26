@@ -10,7 +10,7 @@
 <body>
     <div class="header">
         <a href="index.html">
-            <i class='bx bx-arrow-back' id="back-btn"></i>
+            <i class='bx bx-home-alt' id="home-btn"></i>
           </a>
         <h1 id="team-name"></h1>
     </div>
@@ -20,14 +20,16 @@
     <div class="player-type-container">
         <h2>What type of player are you looking to trade for?</h2>
         <div class="player-type-buttons">
-            <button class="player-type-btn">Contact</button>
-            <button class="player-type-btn">Power</button>
-            <button class="player-type-btn">Best Hitter</button>
-            <button class="player-type-btn">Speedster</button>
-            <button class="player-type-btn">Shutdown starter</button>
-            <button class="player-type-btn">Strikeout starter</button>
-            <button class="player-type-btn">Shutdown reliever</button>
-            <button class="player-type-btn">Closer</button>
+            <!-- Example buttons in the player selection screen HTML -->
+        <button class="player-type-btn" data-type="Contact">Contact</button>
+        <button class="player-type-btn" data-type="Power">Power</button>
+        <button class="player-type-btn" data-type="Best Hitter">Best Hitter</button>
+        <button class="player-type-btn" data-type="Speedster">Speedster</button>
+        <button class="player-type-btn" data-type="Shutdown Starter">Shutdown Starter</button>
+        <button class="player-type-btn" data-type="Strikeout Starter">Strikeout Starter</button>
+        <button class="player-type-btn" data-type="Best Reliever">Best Reliever</button>
+        <button class="player-type-btn" data-type="Closer">Closer</button>
+
         </div>
     </div>
     <script>
@@ -36,6 +38,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             const teamAbbreviation = urlParams.get('team');
 
+            localStorage.setItem('teamAbbreviation', teamAbbreviation);
+            
             // Retrieve all teams data from localStorage
             const teamsData = JSON.parse(localStorage.getItem('teamsData'));
 
@@ -46,7 +50,15 @@
                 document.getElementById('team-logo').src = selectedTeam.image;
                 document.getElementById('team-logo').alt = selectedTeam.name;
             }
-        });
+        // Handle player type button clicks
+        const buttons = document.querySelectorAll('.player-type-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const playerType = button.getAttribute('data-type');
+                    window.location.href = `results.html?playerType=${encodeURIComponent(playerType)}&team=${encodeURIComponent(teamAbbreviation)}`;
+                });
+            });
+        });       
     </script>
 </body>
 </html>

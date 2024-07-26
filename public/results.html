@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Results</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <div id="results-screen">
-        <div id="player-info">
-            <img id="player-image" src="" alt="Player Image">
-            <div id="player-stats">
+        <div id="player-container">
+            <div id="player-name"></div>
+            <div id="stats-container">
                 <p id="stat1"></p>
                 <p id="stat2"></p>
                 <p id="stat3"></p>
             </div>
-            <div id="player-name"></div>
+            <a id="baseball-ref-link" href="#" target="_blank">View Profile</a>
         </div>
-        <button id="select-another">Select Another Player Type</button>
-        <button id="next-best">Next Best Available</button>
+
+        <div id="buttons-container">
+            <button id="next-player-btn">Next Best Available</button>
+            <button id="select-another-type-btn">Select Another Player Type</button>
+        </div>
     </div>
-    <script src="results.js"></script>
+
+    <script src="/src/results.js"></script>
 </body>
 </html>
