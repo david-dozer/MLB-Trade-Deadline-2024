@@ -27,8 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
               teamElement.appendChild(img);
               teamElement.addEventListener('click', () => {
-                  // Redirect to the player type selection screen with team abbreviation
-                  window.location.href = `/player-selection.html?team=${teamInstance.abbreviation}`;
+                // Store the team's winning percentage in localStorage
+                localStorage.setItem('teamWinningPercentage', teamInstance.W_L_percent);
+                console.log()
+                // Redirect to the player type selection screen with team abbreviation
+                window.location.href = `/player-selection.html?team=${teamInstance.abbreviation}`;
               });
 
               teamContainer.appendChild(teamElement);

@@ -146,8 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const [topTier, middleTier, bottomTier] = divideArrayIntoThree(sortedPlayers);
+                console.log('TopTier: ', topTier);
+                console.log('MiddleTier: ', middleTier);
+                console.log('BottomTier: ', bottomTier);
 
                 let playersToShow = [];
+                console.log("Team WPCT%: ", winningPercentage);
                 if (winningPercentage >= 0.545) {
                     playersToShow = middleTier;
                 } else if (winningPercentage < 0.545 && winningPercentage >= 0.485) {
@@ -156,19 +160,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     playersToShow = bottomTier;
                 }
 
-                if (playersToShow.length > 0) {
-                    displayPlayer(playersToShow[0]);
-                    playersToShow.shift();
-                }
+                console.log('Tiered Players for this team:', playersToShow);
+                displayPlayer(playersToShow[0]);
 
                 const nextBtn = document.getElementById('next-player-btn');
                 const selectAnotherBtn = document.getElementById('select-another-type-btn');
 
                 if (nextBtn) {
                     nextBtn.addEventListener('click', () => {
+                        playersToShow.shift();
                         if (playersToShow.length > 0) {
-                            displayPlayer(playersToShow[0]);
-                            playersToShow.shift();                
+                            displayPlayer(playersToShow[0]);                
                         } else {
                             document.getElementById('player-container').innerHTML = `
                                 <p>No more players available. Go back to the <a href="/player-selection.html?team=${encodeURIComponent(teamAbbreviation)}">player selection</a> screen.</p>
