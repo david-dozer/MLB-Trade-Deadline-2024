@@ -15,18 +15,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function splitName(fullName) {
+        if (!fullName) {
+            return {
+                firstName: null,
+                lastName: null
+            };
+        }
+        
         const names = fullName.split(' ');
         return {
-            firstName: names[0],
-            lastName: names[names.length - 1]
+            firstName: names[0] || null,
+            lastName: names[names.length - 1] || null
         };
     }
+    
 
     function displayPlayer(player) {
         // const playerContainer = document.getElementById('player-container');
+        if (!player) {
+            console.error('No player to display');
+            return;
+        }
+
         const statsContainer = document.getElementById('stats-container');
         const playerName = document.getElementById('player-name');
         const baseballRefLink = document.getElementById('baseball-ref-link');
+        
         
         const { lastName } = splitName(player.Name);
 
@@ -77,15 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 'Best Reliever':
                 statsContainer.innerHTML = `
-                    <p>SV: ${player.Stat2}</p>
-                    <p>BSV%: ${player.Stat3* 10}%</p>
-                    <p>SV%: ${player.Stat4* 100}%</p>
+                    <p>SO9: ${player.Stat2}</p>
+                    <p>FIP: ${player.Stat3}%</p>
+                    <p>IS%: ${player.Stat4* 100}%</p>
                 `;
                 break;
-            case 'Best Closer':
+            case 'Closer':
                 statsContainer.innerHTML = `
                     <p>SV: ${player.Stat2}</p>
-                    <p>BSV%: ${player.Stat3* 10}%</p>
+                    <p>BSV%: ${player.Stat3* 100}%</p>
                     <p>SV%: ${player.Stat4* 100}%</p>
                 `;
                 break;
@@ -96,6 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`/players?playerType=${encodeURIComponent(playerType)}&team=${encodeURIComponent(teamAbbreviation)}`)
             .then(response => response.json())
             .then(players => {
+                if (!Array.isArray(players)) {
+                    console.error('Expected an array but got:', players);
+                    throw new Error('Invalid data format: expected an array');
+                }
+    
+                console.log('Fetched players:', players);
+
                 let sortedPlayers = [];
                 switch (playerType) {
                     case 'Contact':
@@ -119,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     case 'Best Reliever':
                         sortedPlayers = players.sort((a, b) => (b.SO9 + b.FIP - b.IS) - (a.SO9 + a.FIP - a.IS));
                         break;
-                    case 'Best Closer':
+                    case 'Closer':
                         sortedPlayers = players.sort((a, b) => (b.SV + b.BSV + b.SV_PCT - b.BSV - b.HR9) - (a.SV + a.BSV + a.SV_PCT - a.BSV - a.HR9));
                         break;
                 }
@@ -127,10 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const [topTier, middleTier, bottomTier] = divideArrayIntoThree(sortedPlayers);
 
                 let playersToShow = [];
-                if (winningPercentage >= 0.535) {
-                    playersToShow = topTier;
-                } else if (winningPercentage < 0.535 && winningPercentage >= 0.485) {
+                if (winningPercentage >= 0.545) {
                     playersToShow = middleTier;
+                } else if (winningPercentage < 0.545 && winningPercentage >= 0.485) {
+                    playersToShow = topTier;
                 } else {
                     playersToShow = bottomTier;
                 }
@@ -138,23 +159,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (playersToShow.length > 0) {
                     displayPlayer(playersToShow[0]);
                     playersToShow.shift();
-                } else {
-                    document.getElementById('player-container').innerHTML = `
-                        <p>No more players available. Go back to the <a href="/player-selection.html?team=${encodeURIComponent(teamAbbreviation)}">player selection</a> screen.</p>
-                    `;
                 }
 
-                const nextBtn = document.getElementById('next-btn');
-                const selectAnotherBtn = document.getElementById('select-another-btn');
+                const nextBtn = document.getElementById('next-player-btn');
+                const selectAnotherBtn = document.getElementById('select-another-type-btn');
 
                 if (nextBtn) {
                     nextBtn.addEventListener('click', () => {
                         if (playersToShow.length > 0) {
                             displayPlayer(playersToShow[0]);
-                            playersToShow.shift();
+                            playersToShow.shift();                
                         } else {
                             document.getElementById('player-container').innerHTML = `
-                                <p>No more players available. Go back to the <a href="/player-selection.html">player selection</a> screen.</p>
+                                <p>No more players available. Go back to the <a href="/player-selection.html?team=${encodeURIComponent(teamAbbreviation)}">player selection</a> screen.</p>
                             `;
                         }
                     });

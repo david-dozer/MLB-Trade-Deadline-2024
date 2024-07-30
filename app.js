@@ -68,7 +68,7 @@ app.get('/players', (req, res) => {
           break;
       case 'Speedster':
           query = `
-              SELECT Name, Username, OBP + sb_percent + (sb+cs) + rs_percent as Stat1, sb as Stat2 OBP as Stat3, sb_percent as Stat4
+              SELECT Name, Username, OBP + sb_percent + (sb+cs) + rs_percent as Stat1, sb as Stat2, OBP as Stat3, sb_percent as Stat4
               FROM hitters
               WHERE team != '${team}'
               ORDER BY Stat1 DESC
@@ -95,20 +95,20 @@ app.get('/players', (req, res) => {
           break;
       case 'Best Reliever':
           query = `
-              SELECT Name, Username, SV + BSv + sv_percent - bsv_percent - HR9 as Stat1, SV as Stat2, sv_percent as Stat3
-              FROM closers
-              WHERE team != '${team}'
-              ORDER BY Stat1 DESC
-              LIMIT 21;
+                SELECT Name, Username, SO9 + FIP - is_percent as Stat1, SO9 as Stat2, FIP as Stat3, is_percent as Stat4
+                FROM relievers
+                WHERE team != '${team}'
+                ORDER BY Stat1 DESC
+                LIMIT 21;
           `;
           break;
-      case 'Best Closer':
+      case 'Closer':
           query = `
-              SELECT Name, Username, SV + BSv + sv_percent - bsv_percent - HR9 as Stat1, SV as Stat2, sv_percent as Stat3
+              SELECT Name, Username, SV + BSv + sv_percent - bsv_percent - HR9 as Stat1, SV as Stat2, sv_percent as Stat3, bsv_percent as Stat4
               FROM closers
               WHERE team != '${team}'
               ORDER BY Stat1 DESC
-              LIMIT 21;
+              LIMIT 12;
           `;
           break;
       default:
